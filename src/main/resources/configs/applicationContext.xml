@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-4.1.xsd">
+<!-- spring主配置文件-用于配置系统组件 -->
+
+	
+	<!-- 打开aop自动扫描管理器 -->
+    <!--  <aop:aspectj-autoproxy/> -->
+   
+	<!-- 打开组件自动扫描管理器 -->
+    <context:component-scan base-package="com.discovery.service,com.discovery.dao"></context:component-scan>
+    
+	
+	<!-- 数据源 -->
+    <!-- <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+         Mysql数据库-DISCOVERY
+        <property name="url"
+            value="jdbc:mysql://localhost:3307/DISCOVERY?useUnicode=true&amp;characterEncoding=UTF-8&amp;allowMultiQueries=true" />
+        <property name="username" value="root" />
+        <property name="password" value="yanchen1990" />
+    </bean> -->
+    
+    
+    <!-- 属性文件配置 -->  
+	<bean id="propertyConfigurer"  
+        class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">  
+        <property name="locations">				  
+           <list>  
+               <value>classpath:jdbc.properties</value>  
+           </list>  
+       </property> 
+    </bean>
+    
+    
+    <!-- c3p0连接池配置 -->  
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">  
+	    <!-- 连接数据库的驱动 -->  
+	    <property name="driverClass" value="com.mysql.jdbc.Driver"/>  
+	    <!-- 连接数据库的URL -->  
+	    <property name="jdbcUrl" value="jdbc:mysql://localhost:3307/DISCOVERY?useUnicode=true&amp;characterEncoding=UTF-8&amp;allowMultiQueries=true"/>  
+	    <!-- 用户名 -->  
+	    <property name="user" value="root"/>  
+	    <!-- 密码 -->  
+	    <property name="password" value="123"/>   
+	  
+	    <!-- 连接池中保留的最小连接数，默认为：3 -->  
+	    <property name="minPoolSize" value="3" />  
+	    <!-- 连接池中保留的最大连接数。默认值: 15 -->  
+	    <property name="maxPoolSize" value="15" />  
+	    <!-- 初始化连接池中的连接数，取值应在minPoolSize与maxPoolSize之间，默认为3 -->  
+	    <property name="initialPoolSize" value="3" />  
+	</bean> 
+    
+    
+    <!-- 配置SqlSessionFactoryBean -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <!-- sqlMap.xml的路径 -->
+        <property name="mapperLocations">
+            <list>
+                <value>classpath:configs/sqlmaps/mybatis-*.xml</value>
+            </list>
+        </property>
+        <property name="configLocation" value="classpath:configs/spring-mybatis.xml" />
+    </bean>  
+    <!-- 配置mapperDao接口（DAO接口的位置） -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.discovery.dao" />
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+    </bean>
+    
+    <!-- 配置Spring的事务管理器 -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+ 
+    <!-- 注解方式配置事物 -->
+    <!-- <tx:annotation-driven transaction-manager="transactionManager"/> -->
+    
+    
+    
+    
+</beans>
