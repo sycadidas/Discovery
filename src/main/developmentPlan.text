@@ -1,0 +1,6 @@
+1:排查架构漏洞-解决PropertyPlaceholderConfigurer无法取值的问题以及其他未发现的问题
+2:增加权限系统-spring security或者shiro 方案待定
+3:增加声明式事务模块
+4:增加日志系统-设计一套高效高可用的日志方案
+5:完善前端-增加部分业务模块
+6:分离部分业务负载至外部应用-新建java项目 实现后端Dubbo服务 提供给Discovery使用
