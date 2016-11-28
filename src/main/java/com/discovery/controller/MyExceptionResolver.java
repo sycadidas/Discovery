@@ -29,6 +29,5 @@ public class MyExceptionResolver  implements HandlerExceptionResolver {
 	      return modelAndView;
 	}
 	
-	
-	}
+}
 

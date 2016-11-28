@@ -46,6 +46,5 @@ public class LoadingController {
         rp.setContentType("text/html;charset=UTF-8"); 
         rp.getWriter().print(jsonObject.toString()); 
 		return null;
-		
 	}
 }
