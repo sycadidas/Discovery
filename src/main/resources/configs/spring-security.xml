@@ -14,7 +14,7 @@
   	
     <!--登录页面不过滤 -->  
     <http pattern="/security/login" security="none" />  
-    <http access-denied-page="/accessDenied.jsp"><!-- 访问了没有权限的url之后跳转的页面 -->  
+    <http><!-- 访问了没有权限的url之后跳转的页面 -->  
         <form-login login-page="/hello.jsp" />  
         <!--访问/**资源的用户必须具有ROLE_USER的权限 -->  
         <intercept-url pattern="/**" access="ROLE_USER" /> 

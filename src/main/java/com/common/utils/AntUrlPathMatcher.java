@@ -3,7 +3,7 @@ package com.common.utils;
 import org.springframework.util.AntPathMatcher;
 import org.springframework.util.PathMatcher;
 
-public class AntUrlPathMatcher implements SecuUrlMatcher {    
+public class AntUrlPathMatcher implements UrlMatcher {    
     private boolean requiresLowerCaseUrl;  
     private PathMatcher pathMatcher;   
     public AntUrlPathMatcher()   {   

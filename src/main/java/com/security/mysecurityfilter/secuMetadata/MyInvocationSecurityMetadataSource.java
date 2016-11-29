@@ -3,13 +3,9 @@ package com.security.mysecurityfilter.secuMetadata;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
-import javax.annotation.Resource;
 
 import org.springframework.security.access.ConfigAttribute;
 import org.springframework.security.access.SecurityConfig;
@@ -17,10 +13,10 @@ import org.springframework.security.web.FilterInvocation;
 import org.springframework.security.web.access.intercept.FilterInvocationSecurityMetadataSource;
 
 import com.common.utils.AntUrlPathMatcher;
-import com.common.utils.SecuUrlMatcher;
+import com.common.utils.UrlMatcher;
 
 public class MyInvocationSecurityMetadataSource implements FilterInvocationSecurityMetadataSource {   
-    private SecuUrlMatcher urlMatcher = new AntUrlPathMatcher();   
+    private UrlMatcher urlMatcher = new AntUrlPathMatcher();   
     private static Map<String, Collection<ConfigAttribute>> resourceMap = null;  
       
     //tomcat启动时实例化一次  
@@ -55,7 +51,7 @@ public class MyInvocationSecurityMetadataSource implements FilterInvocationSecur
         }    
     public boolean supports(Class<?>clazz) {   
             return true;    
-            }   
+            }  
     public Collection<ConfigAttribute> getAllConfigAttributes() {   
         return null;    
         }  
