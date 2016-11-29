@@ -3,9 +3,11 @@ package com.security.mysecurityfilter.secuMetadata;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.annotation.Resource;
 
@@ -19,40 +21,37 @@ import com.common.utils.SecuUrlMatcher;
 
 public class MyInvocationSecurityMetadataSource implements FilterInvocationSecurityMetadataSource {   
     private SecuUrlMatcher urlMatcher = new AntUrlPathMatcher();   
-//  private static Map<String, Collection<ConfigAttribute>> resourceMap = null;  
-      
-    //将所有的角色和url的对应关系缓存起来  
-    private static List<RoleUrlResource> rus = null;  
-      
-    @Resource  
-    private IRoleUrlResourceDao roleUrlDao;  
+    private static Map<String, Collection<ConfigAttribute>> resourceMap = null;  
       
     //tomcat启动时实例化一次  
-    public MyInvocationSecurityMetadataSource() {}  
+    public MyInvocationSecurityMetadataSource() {  
+        loadResourceDefine();    
+        }     
+    //tomcat开启时加载一次，加载所有url和权限（或角色）的对应关系  
+    private void loadResourceDefine() {  
+        resourceMap = new HashMap<String, Collection<ConfigAttribute>>();   
+        Collection<ConfigAttribute> atts = new ArrayList<ConfigAttribute>();   
+        ConfigAttribute ca = new SecurityConfig("ROLE_USER");  
+        atts.add(ca);   
+        resourceMap.put("/index.jsp", atts);    
+        Collection<ConfigAttribute> attsno =new ArrayList<ConfigAttribute>();  
+        ConfigAttribute cano = new SecurityConfig("ROLE_NO");  
+        attsno.add(cano);  
+        resourceMap.put("/other.jsp", attsno);     
+        }    
       
     //参数是要访问的url，返回这个url对于的所有权限（或角色）  
     public Collection<ConfigAttribute> getAttributes(Object object) throws IllegalArgumentException {   
         // 将参数转为url      
         String url = ((FilterInvocation)object).getRequestUrl();     
-          
-        //查询所有的url和角色的对应关系  
-        if(rus == null){  
-        rus = roleUrlDao.findAll();  
-        }  
-          
-        //匹配所有的url，并对角色去重  
-        Set<String> roles = new HashSet<String>();  
-        for(RoleUrlResource ru : rus){  
-            if (urlMatcher.pathMatchesUrl(ru.getUrlResource().getUrl(), url)) {   
-                        roles.add(ru.getRole().getRoleName());  
-                }       
-        }  
-        Collection<ConfigAttribute> cas = new ArrayList<ConfigAttribute>();   
-        for(String role : roles){  
-            ConfigAttribute ca = new SecurityConfig(role);  
-            cas.add(ca);   
-        }  
-        return cas;  
+        Iterator<String>ite = resourceMap.keySet().iterator();   
+        while (ite.hasNext()) {           
+            String resURL = ite.next();    
+            if (urlMatcher.pathMatchesUrl(resURL, url)) {   
+                return resourceMap.get(resURL);           
+                }         
+            }   
+        return null;      
         }    
     public boolean supports(Class<?>clazz) {   
             return true;    

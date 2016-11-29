@@ -8,4 +8,6 @@ import com.common.dto.User;
 @Repository
 public interface AuthUserDao {
 	public User getUserByUserName(@Param("username")String username,@Param("password")String password);
+	
+	public User getUserByUsername(@Param("username")String username);
 }

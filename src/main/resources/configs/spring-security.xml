@@ -11,14 +11,11 @@
      <http pattern="/scripts/**" security="none"></http>  
      <http pattern="/images/**" security="none"></http>  
      <http pattern="/404.jsp" security="none" />  
-     <http pattern="/errorPage.jsp" security="none" />  
   	
     <!--登录页面不过滤 -->  
     <http pattern="/security/login" security="none" />  
-    <http access-denied-page="/404.jsp">  
+    <http access-denied-page="/accessDenied.jsp"><!-- 访问了没有权限的url之后跳转的页面 -->  
         <form-login login-page="/hello.jsp" />  
-        <!--访问/admin.jsp资源的用户必须具有ROLE_ADMIN的权限 -->  
-        <intercept-url pattern="/admin.jsp" access="ROLE_ADMIN" /> 
         <!--访问/**资源的用户必须具有ROLE_USER的权限 -->  
         <intercept-url pattern="/**" access="ROLE_USER" /> 
         <session-management>  
