@@ -8,10 +8,10 @@ import org.springframework.web.servlet.ModelAndView;
  * @author sunyanchen
  */
 @Controller
-@RequestMapping("/first")
+@RequestMapping("/security")
 public class FrontfaceController {
 	//跳转到登录页面 
-	@RequestMapping("/hello")
+	@RequestMapping("/login")
       public ModelAndView hello() throws Exception{
                 
 		  ModelAndView mv =new ModelAndView();

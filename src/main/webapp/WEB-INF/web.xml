@@ -8,7 +8,10 @@
          <!-- 加载Spring配置文件 -->
          <context-param>
                    <param-name>contextConfigLocation</param-name>
-                   <param-value>classpath:/configs/applicationContext.xml</param-value><!-- spring配置文件 -->
+                   <param-value>classpath:/configs/applicationContext.xml,
+                   				classpath:/configs/spring-servlet.xml,
+                   				classpath:/configs/spring-security.xml		
+                   </param-value><!-- spring配置文件 -->
          </context-param>
 			
          <!-- Spring监听 -->
