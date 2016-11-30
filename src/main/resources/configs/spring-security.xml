@@ -11,13 +11,13 @@
      <http pattern="/scripts/**" security="none"></http>  
      <http pattern="/images/**" security="none"></http>  
      <http pattern="/404.jsp" security="none" />  
-  	
     <!--登录页面不过滤 -->  
     <http pattern="/security/login" security="none" />  
-    <http><!-- 访问了没有权限的url之后跳转的页面 -->  
+    
+    <http>  
         <form-login login-page="/hello.jsp" />  
         <!--访问/**资源的用户必须具有ROLE_USER的权限 -->  
-        <intercept-url pattern="/**" access="ROLE_USER" /> 
+        <intercept-url pattern="/**" access="hasRole('ROLE_USER')"  /> 
         <session-management>  
             <concurrency-control max-sessions="1"  
                 error-if-maximum-exceeded="false" />  
@@ -25,8 +25,7 @@
         <!--增加一个filter，这点与 Acegi是不一样的，不能修改默认的filter了， 这个filter位于FILTER_SECURITY_INTERCEPTOR之前 -->  
         <custom-filter ref="myFilter" before="FILTER_SECURITY_INTERCEPTOR" />  
     </http>  
-    <!--一个自定义的filter，必须包含 authenticationManager,accessDecisionManager,securityMetadataSource三个属性，   
-        我们的所有控制将在这三个类中实现，解释详见具体配置 -->  
+    <!--一个自定义的filter，必须包含 authenticationManager,accessDecisionManager,securityMetadataSource三个属性 我们的所有控制将在这三个类中实现 -->  
     <b:bean id="myFilter"  
         class="com.security.mysecurityfilter.MyFilterSecurityInterceptor">  
         <b:property name="authenticationManager" ref="authenticationManager" />  
