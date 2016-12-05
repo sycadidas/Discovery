@@ -1,6 +1,5 @@
 <!DOCTYPE HTML>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"  isELIgnored="false"%>  
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -21,37 +20,37 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  		$('.login-form').remove();
 		});
 	});
-});
 </script>
  <!--SIGN UP-->
  <h1>gonna be fun</h1>
-<div class="login-form">
-	<div class="close"> </div>
-		<div class="head-info">
-			<label class="lbl-1"> </label>
-			<label class="lbl-2"> </label>
-			<label class="lbl-3"> </label>
+	<div class="login-form">
+		<div class="close"> </div>
+			<div class="head-info">
+				<label class="lbl-1"> </label>
+				<label class="lbl-2"> </label>
+				<label class="lbl-3"> </label>
+			</div>
+				<div class="clear"> </div>
+		<div class="avtar">
+			<img src="../images/avtar.png" />
 		</div>
-			<div class="clear"> </div>
-	<div class="avtar">
-		<img src="../images/avtar.png" />
+				<form id="loginForm" action ="j_spring_security_check" method="POST">
+						<input id="username" name='j_username' type="text" class="text" placeholder="Username">
+			<div class="key">
+						<input id="password" name='j_password' type="password" placeholder="Password">
+		    </div>
+				</form>
+		<div class="signin">
+			<input type="submit" value="Login" onclick="doLogin()">
+		</div>
 	</div>
-			<form>
-					<input id="username" type="text" class="text" placeholder="Username">
-		<div class="key">
-					<input id="password" type="password" placeholder="Password">
-	    </div>
-			</form>
-	<div class="signin">
-		<input type="submit" value="Login" onclick="doLogin()" >
-	</div>
-</div>
 </body>
 <script type="text/javascript">
 function doLogin(){
 flag = validateusercode();
 	if(flag==true){
-		var username = $("#username").val();
+		     $("#loginForm").submit();
+		<%-- var username = $("#username").val();
 		var password = $("#password").val();
 		 $.ajax({  
 			     url:"<%=basePath %>check/user",// 跳转到 action  
@@ -69,7 +68,7 @@ flag = validateusercode();
 			    		 alert("用户名或者密码错误");
 			    	 }
 			      }  
-			 });
+			 }); --%>
 	}
 }
 function validateusercode(){

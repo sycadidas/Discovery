@@ -46,18 +46,17 @@ public class MyFilterSecurityInterceptor extends AbstractSecurityInterceptor  im
                 super.afterInvocation(token, null);    
             }     
         }    
+    
     public SecurityMetadataSource obtainSecurityMetadataSource() {   
         return this.securityMetadataSource;     
-        }   
-    public void setSecurityMetadataSource(  
-            FilterInvocationSecurityMetadataSource newSource)  
-    {   
+    }   
+    
+    public void setSecurityMetadataSource(FilterInvocationSecurityMetadataSource newSource){   
         this.securityMetadataSource = newSource;   
     }   
+    
     public void destroy() {    
-          
     }     
     public void init(FilterConfig arg0) throws ServletException {    
-          
     }    
 }  

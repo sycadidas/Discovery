@@ -32,7 +32,7 @@ public class MyUserDetailService implements UserDetailsService{
             auths.add(auth2);        
         }       
           
-        User user = new User(username, "sunyanchen", true, true, true, true, auths);   
+        User user = new User(username, "123", true, true, true, true, auths);   
         return user;    
         }   
     }   

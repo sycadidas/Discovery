@@ -34,7 +34,7 @@ public class MyAccessDecisionManager implements AccessDecisionManager {
 		        }              
 		    }        
 		}   
-        //注意：执行这里，后台是会抛异常的，但是界面会跳转到所配的access-denied-page页面  
+        //执行这里，后台是会抛异常的，但是界面会跳转到所配的access-denied-page页面  
         throw new AccessDeniedException("no right");     
 }     
     public boolean supports(ConfigAttribute attribute) {   

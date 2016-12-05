@@ -14,19 +14,28 @@ import com.discovery.service.serviceInte.AuthUserService;
 @RequestMapping("/check")
 public class CheckUser  {
 	
-	@Resource(name="authUserService")
-	private AuthUserService authUserService;
-	
-	@RequestMapping("/user")
-	@ResponseBody
-    public String checkUser(String username,String password,HttpServletRequest req){
-		  if(username!=null&&password!=null){
-			 User user = authUserService.queryUserByUserId(username,password);
-			 if(user!=null){
-				 req.getSession().setAttribute("username", user.getUsername());
-				 return "true";
-			 }
-		  }
-		  return "false";
-    }
+//	@Resource(name="authUserService")
+//	private AuthUserService authUserService;
+//	
+//	@RequestMapping("/user")
+//	@ResponseBody
+//    public String checkUser(String username,String password,HttpServletRequest req){
+//		  if(username!=null&&password!=null){
+//			 User user = authUserService.queryUserByUserId(username,password);
+//			 if(user!=null){
+//				 req.getSession().setAttribute("username", user.getUsername());
+//				 return "true";
+//			 }
+//		  }
+//		  return "false";
+//    }
+	@RequestMapping("success")  
+    public @ResponseBody String success() {  
+        return "true";  
+    }  
+  
+    @RequestMapping("failure")  
+    public @ResponseBody String failure() {  
+        return "false";  
+    }  
 }
