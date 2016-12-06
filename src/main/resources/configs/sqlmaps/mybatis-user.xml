@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.discovery.dao.AuthUserDao">
     
-    <select id="getUserByUserName" parameterType="String" resultType="com.common.dto.User">
-        SELECT USER_NAME username,PASSWORD password,AGE age,GENDER gender,ISVIP isVIP FROM USER
-        WHERE USER_NAME = #{username}
-        AND PASSWORD = #{password}
+    <select id="loadAllAuthons" parameterType="java.lang.String" resultType="java.lang.String">
+    	SELECT a.authority FROM authorities a,resources r,resource_authority m WHERE r.resource_content = #{url}
+		AND  r.id = m.rid
+		AND  m.aid = a.id
     </select>
 </mapper>

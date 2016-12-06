@@ -20,7 +20,7 @@ public class MyFilterSecurityInterceptor extends AbstractSecurityInterceptor  im
     //配置文件注入  
     private FilterInvocationSecurityMetadataSource securityMetadataSource;  
       
-    //登陆后，每次访问资源都通过这个拦截器拦截  
+    //登陆后，每次访问资源都通过这个拦截器拦截 
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {   
         FilterInvocation fi = new FilterInvocation(request, response, chain);   
         invoke(fi);    

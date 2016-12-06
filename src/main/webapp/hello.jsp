@@ -10,8 +10,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 
-<link href="../styles/style.css" rel='stylesheet' type='text/css' />
-<script type="text/javascript" src="../scripts/jquery-1.7.1.min.js"></script>
+<link href="styles/style.css" rel='stylesheet' type='text/css' />
+<script type="text/javascript" src="scripts/jquery-1.7.1.min.js"></script>
 </head>
 <body>
 <script>$(document).ready(function(c) {
@@ -32,16 +32,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 				<div class="clear"> </div>
 		<div class="avtar">
-			<img src="../images/avtar.png" />
+			<img src="images/avtar.png" />
 		</div>
 				<form id="loginForm" action ="j_spring_security_check" method="POST">
-						<input id="username" name='j_username' type="text" class="text" placeholder="Username">
+						<input id="username" name='j_username' type="text" class="text" placeholder="Username"/>
 			<div class="key">
-						<input id="password" name='j_password' type="password" placeholder="Password">
+						<input id="password" name='j_password' type="password" placeholder="Password"/>
 		    </div>
 				</form>
 		<div class="signin">
-			<input type="submit" value="Login" onclick="doLogin()">
+			<input type="submit" value="Login" onclick="doLogin()"/>
 		</div>
 	</div>
 </body>
