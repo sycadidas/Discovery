@@ -14,7 +14,7 @@
     
     
     <http>  
-        <form-login login-page="/hello.jsp" default-target-url="/load/script" username-parameter="j_username" password-parameter="j_password"/>
+        <form-login login-page="/hello.jsp" default-target-url="/load/script"/>
         
         <access-denied-handler error-page="/404.jsp" /><!-- 没有权限跳转的页面 -->
            
@@ -47,7 +47,7 @@
     <authentication-manager alias="authenticationManager">  
         <authentication-provider user-service-ref="myUserDetailService">  
             <!--用户的密码采用加密 -->
-            <password-encoder hash="md5" />
+            <!-- <password-encoder hash="md5" /> -->
         </authentication-provider>  
     </authentication-manager>  
     

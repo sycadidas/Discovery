@@ -34,14 +34,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="avtar">
 			<img src="images/avtar.png" />
 		</div>
-				<form id="loginForm" action ="j_spring_security_check" method="POST">
-						<input id="username" name='j_username' type="text" class="text" placeholder="Username"/>
+				<form id="loginForm" action ="login" method="POST">
+						<input id="username" name='username' type="text" class="text" placeholder="Username"/>
 			<div class="key">
-						<input id="password" name='j_password' type="password" placeholder="Password"/>
+						<input id="password" name='password' type="password" placeholder="Password"/>
 		    </div>
 				</form>
 		<div class="signin">
 			<input type="submit" value="Login" onclick="doLogin()"/>
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		</div>
 	</div>
 </body>

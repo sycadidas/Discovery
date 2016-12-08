@@ -19,19 +19,19 @@ public class MyUserDetailService implements UserDetailsService{
 	
 	
 	@Override
-	public UserDetails loadUserByUsername(String j_username)throws UsernameNotFoundException, DataAccessException {     
+	public UserDetails loadUserByUsername(String username)throws UsernameNotFoundException, DataAccessException {     
        
 		Collection<GrantedAuthority> auths=new ArrayList<GrantedAuthority>();   
           
         SimpleGrantedAuthority auth2=new SimpleGrantedAuthority("ROLE_ADMIN");   
         SimpleGrantedAuthority auth1=new SimpleGrantedAuthority("ROLE_USER");   
           
-        if(j_username.equals("sunyanchen")){   
+        if(username.equals("sunyanchen")){   
             auths.add(auth1);  
             auths.add(auth2);        
         }       
           
-        User user = new User(j_username, "123", true, true, true, true, auths);   
+        User user = new User(username, "123", true, true, true, true, auths);   
         return user;    
         }   
     }   
