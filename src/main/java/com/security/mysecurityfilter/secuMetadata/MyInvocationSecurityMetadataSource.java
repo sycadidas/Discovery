@@ -21,7 +21,12 @@ public class MyInvocationSecurityMetadataSource implements FilterInvocationSecur
     public Collection<ConfigAttribute> getAttributes(Object object) throws IllegalArgumentException {   
         // 将参数转为url      
         String url = ((FilterInvocation)object).getRequestUrl();
-        url = "/";
+        String[] split = url.split("/");
+        if(split.length == 3){
+        	url = "/*/*";
+        }else{
+        	url = "/admin";
+        }
         //取出该url所对应的权限集合
         Collection<ConfigAttribute> c = new ArrayList<ConfigAttribute>();
         ArrayList<String> aus = authuserdao.loadAllAuthons(url);

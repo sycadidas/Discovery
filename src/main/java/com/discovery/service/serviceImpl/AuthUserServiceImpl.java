@@ -12,12 +12,12 @@ public class AuthUserServiceImpl implements AuthUserService {
 	
 	@Autowired
 	private AuthUserDao authuserdao;
-	
+
 	@Override
-	public User queryUserByUserId(String userid,String password) {
-		
-		return	authuserdao.getUserByUserName(userid,password);
-		 
+	public User queryUserByUserId(String UserId, String password) {
+		// TODO Auto-generated method stub
+		return null;
 	}
+	
 
 }

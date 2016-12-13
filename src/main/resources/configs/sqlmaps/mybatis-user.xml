@@ -7,4 +7,8 @@
 		AND  r.id = m.rid
 		AND  m.aid = a.id
     </select>
+    
+    <select id="getUserByUsername" parameterType="java.lang.String" resultType="com.common.dto.User">
+    	SELECT password ,authority au FROM users u ,authorities a WHERE u.id = a.uid AND u.username = #{username};
+    </select>
 </mapper>

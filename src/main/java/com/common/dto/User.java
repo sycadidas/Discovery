@@ -6,6 +6,15 @@ public class User {
 	private String age;//年龄
 	private String gender;//性别
 	private Boolean isVIP;//是否为会员
+	private String au;
+	
+	
+	public String getAu() {
+		return au;
+	}
+	public void setAu(String au) {
+		this.au = au;
+	}
 	public String getUsername() {
 		return username;
 	}
