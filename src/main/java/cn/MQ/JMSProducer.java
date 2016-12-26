@@ -47,7 +47,7 @@ public class JMSProducer {
             //创建session
             session = connection.createSession(true, Session.AUTO_ACKNOWLEDGE);
             //创建一个名称为HelloWorld的消息队列
-            destination = session.createQueue("HelloWorld");
+            destination = session.createQueue("liyintao");
             //创建消息生产者
             messageProducer = session.createProducer(destination);
             //发送消息
@@ -77,7 +77,7 @@ public class JMSProducer {
     public static void sendMessage(Session session,MessageProducer messageProducer) throws Exception{
         for (int i = 0; i < JMSProducer.SENDNUM; i++) {
             //创建一条文本消息 
-            TextMessage message = session.createTextMessage("ActiveMQ 发送消息" +i);
+            TextMessage message = session.createTextMessage("ActiveMQ 发送消息：李胤涛是个傻屌" +i);
             System.out.println("发送消息：Activemq 发送消息" + i);
             //通过消息生产者发出消息 
             messageProducer.send(message);

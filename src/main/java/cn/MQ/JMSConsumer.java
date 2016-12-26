@@ -39,7 +39,7 @@ public class JMSConsumer {
             //创建session
             session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
             //创建一个连接HelloWorld的消息队列
-            destination = session.createQueue("HelloWorld");
+            destination = session.createQueue("liyintao");
             //创建消息消费者
             messageConsumer = session.createConsumer(destination);
 
