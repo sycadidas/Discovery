@@ -1,5 +1,7 @@
 package cn.MQ;
 
+import java.util.Scanner;
+
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
 import javax.jms.Destination;
@@ -47,28 +49,43 @@ public class JMSProducer {
             //创建session
             session = connection.createSession(true, Session.AUTO_ACKNOWLEDGE);
             //创建一个名称为HelloWorld的消息队列
-            destination = session.createQueue("liyintao");
+            destination = session.createQueue("sycadidas");
             //创建消息生产者
             messageProducer = session.createProducer(destination);
-            //发送消息
-            sendMessage(session, messageProducer);
-
-            session.commit();
-
+            //@1直接循环发送消息
+//            sendMessage(session, messageProducer);
+            //@2获取输入发送消息
+            while(true){
+            	sendMessageOfScanner(session, messageProducer);
+            	session.commit();
+            }
         } catch (Exception e) {
             e.printStackTrace();
-        }finally{
-            if(connection != null){
-                try {
-                    connection.close();
-                } catch (JMSException e) {
-                    e.printStackTrace();
-                }
-            }
         }
+//        finally{
+//            if(connection != null){
+//                try {
+//                    connection.close();
+//                } catch (JMSException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }
 
     }
     /**
+     * 发送控制台输入的内容
+     * @throws JMSException 
+     */
+    private static void sendMessageOfScanner(Session session,MessageProducer messageProducer) throws JMSException {
+    	Scanner scanner = new Scanner(System.in);
+    	
+    	//创建一条文本消息 
+        TextMessage message = session.createTextMessage(scanner.next());
+        System.out.println("发送消息：Activemq 发送消息" + message);
+        messageProducer.send(message);
+	}
+	/**
      * 发送消息
      * @param session
      * @param messageProducer  消息生产者
@@ -77,7 +94,7 @@ public class JMSProducer {
     public static void sendMessage(Session session,MessageProducer messageProducer) throws Exception{
         for (int i = 0; i < JMSProducer.SENDNUM; i++) {
             //创建一条文本消息 
-            TextMessage message = session.createTextMessage("ActiveMQ 发送消息：李胤涛是个傻屌" +i);
+            TextMessage message = session.createTextMessage("sycadidas@163.com" +i);
             System.out.println("发送消息：Activemq 发送消息" + i);
             //通过消息生产者发出消息 
             messageProducer.send(message);
