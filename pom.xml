@@ -179,7 +179,12 @@
         <artifactId>shiro-core</artifactId>  
         <version>1.2.2</version>  
     </dependency>  	
-	
+	<!-- redis -->
+	<dependency>
+			<groupId>redis.clients</groupId>
+			<artifactId>jedis</artifactId>
+			<version>3.0.0.g-SNAPSHOT</version>
+	</dependency>
 	<!-- C3P0连接池 -->
 	<dependency>
 		<groupId>com.mchange</groupId>
