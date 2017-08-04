@@ -1,7 +1,5 @@
 package cn.T;
 
-import java.util.Random;
-
 
 public class Tmethod {
 /**
