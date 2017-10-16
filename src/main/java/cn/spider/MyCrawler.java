@@ -22,7 +22,7 @@ public class MyCrawler {
  public void crawling(String[] seeds) { // 定义过滤器，提取以http://www.lietu.com开头的链接
   LinkFilter filter = new LinkFilter() {
    public boolean accept(String url) {
-    if (url.startsWith("http://lol.qq.com"))
+    if (url.startsWith("http://www.baidu.com"))
      return true;
     else
      return false;
@@ -53,6 +53,6 @@ public class MyCrawler {
  // main 方法入口
  public static void main(String[] args) {
   MyCrawler crawler = new MyCrawler();
-  crawler.crawling(new String[] { "http://lol.qq.com" });
+  crawler.crawling(new String[] {"http://www.baidu.com"});
  }
 }
