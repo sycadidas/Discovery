@@ -26,7 +26,7 @@ public class JMSProducer {
     //发送的消息数量
     private static final int SENDNUM = 10;
 
-    //住方法
+    //主方法（写错字了）
     public static void main(String[] args) {
         //连接工厂
         ConnectionFactory connectionFactory;
