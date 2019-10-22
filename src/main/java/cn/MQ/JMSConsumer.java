@@ -56,6 +56,7 @@ public class JMSConsumer {
         } catch (JMSException e) {
             e.printStackTrace();
         }
+        //为什么我觉得sourcTree乱糟糟的
 
     }
 }
